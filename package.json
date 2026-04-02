@@ -1,5 +1,5 @@
 {
-  "name": "chronoguard",
+  "name": "chronoguard-action",
   "version": "1.0.0",
   "description": "Check for expired TODOs",
   "main": "dist/index.js",
