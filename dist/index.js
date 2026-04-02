@@ -30071,7 +30071,10 @@ function hasIssue(line) {
 
 async function run() {
     try {
-        const filesInput = JSON.parse(core.getInput('files') || '[]')
+        const filesInput = (core.getInput('files') || '')
+            .split(',')
+            .map(f => f.trim())
+            .filter(Boolean)
         const globInput = core.getInput('glob')
         const requireIssue = core.getInput('require_issue') === 'true'
 
