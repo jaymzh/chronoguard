@@ -13,6 +13,15 @@ inputs:
     description: "Require issue reference (issue:123, #123, or URL)"
     required: false
     default: "false"
+  verbose:
+    description: "Print verbose debugging messages"
+    require: false
+    default: "false"
+  fail_on_malformed_tags:
+    description: "If we believe we saw a tag but don't parse it, fail"
+    require: false
+    default: "true"
+
 runs:
   using: "node20"
   main: "dist/index.js"

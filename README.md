@@ -34,15 +34,33 @@ steps:
         glob: ".github/workflows/*.yml"
 ```
 
-## Require issues
+## Options
 
-Want to require an issue or a ticket? We can do that too! Set `require_issue`
-on `chronoguard` and it will fail if it sees a `fail-after` which doesn't
-include an `issue:...`.
+You can pass a variety of options into `with`:
 
-If the issue is in #123 format or a URL, then it will linkify the issue in
-it's output.
+* `require_issue` - If true, all chronoguard lines require a `issue:...` tag as
+  well. If it is in the format `#123` or a URL, will be linkified in output
+* `verbse` - If true prints verbose debugging otuput
+* `fail_on_malformed_tags` - If we believe there was a tag, but didn't parse a
+  date, fail. Defaults to `true`, but if you set to `false`, will warn instead.
 
-## Warn, but don't fail
+## Full example
 
-OK, we can do that too. use `warn-after` instead of `fail-after`.
+```yaml
+name: Chronoguard
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  chronoguard:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: jaymzh/chronoguard@main
+        with:
+          files: .github/workflows/allchecks.yml
+```
