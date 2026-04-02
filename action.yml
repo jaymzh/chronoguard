@@ -1,4 +1,4 @@
-name: "Chronoguard"
+name: "chronoguard-action"
 description: "Fails or warns when annotated dates expire"
 inputs:
   files:
