@@ -1,7 +1,7 @@
 // index.js
-const core = require('@actions/core')
-const glob = require('@actions/glob')
-const fs = require('fs')
+import * as core from '@actions/core'
+import * as glob from '@actions/glob'
+import fs from 'fs'
 
 function normalizeDate(str) {
     return str.replace(/-/g, '')
