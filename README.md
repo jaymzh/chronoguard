@@ -1,5 +1,9 @@
 # chronoguard
 
+[![Build](https://github.com/jaymzh/chronoguard/actions/workflows/build.yaml/badge.svg)](https://github.com/jaymzh/chronoguard/actions/workflows/build.yaml)
+[![CodeQL](https://github.com/jaymzh/chronoguard/actions/workflows/codeql.yml/badge.svg)](https://github.com/jaymzh/chronoguard/actions/workflows/codeql.yml)
+[![Lint](https://github.com/jaymzh/chronoguard/actions/workflows/lint.yaml/badge.svg)](https://github.com/jaymzh/chronoguard/actions/workflows/lint.yaml)
+
 A Github Actions check to mind TODOs.
 
 Ever add something to an exclude list and think "man, that's gonna bit us?"
