@@ -13,6 +13,8 @@ function hasIssue(line) {
 
 async function run() {
     try {
+        const failOnMalformedTags = core.getInput('fail_on_malformed_tags') === 'true'
+        const verbose = core.getInput('verbose') === 'true'
         const filesInput = (core.getInput('files') || '')
             .split(',')
             .map(f => f.trim())
@@ -42,14 +44,34 @@ async function run() {
         let failed = false
 
         for (const file of files) {
+            if (verbose) {
+                console.log("Processing file:", file)
+            }
             const content = fs.readFileSync(file, 'utf8')
             const lines = content.split('\n')
 
             lines.forEach((line, idx) => {
+                let lineIsCandidate = false
+                if (line.includes('fail-after') || line.includes('warn-after')) {
+                    lineIsCandidate = true
+                    if (verbose) {
+                        console.log('Found candidate line:', file, idx+1, line)
+                    }
+                }
                 const failMatch = line.match(/fail-after:(\d{4}-?\d{2}-?\d{2}|\d{8})/)
                 const warnMatch = line.match(/warn-after:(\d{4}-?\d{2}-?\d{2}|\d{8})/)
-
-                if (!failMatch && !warnMatch) return
+                if (!failMatch && !warnMatch) {
+                    if (lineIsCandidate) {
+                        const msg = "Found chronoguard tags, but didn't parse a date. Probably malformed tag!"
+                        if (failOnMalformedTags) {
+                            core.error(msg)
+                            failed = true
+                        } else {
+                            console.warn(msg)
+                        }
+                    }
+                    return
+                }
 
                 if (requireIssue && !hasIssue(line)) {
                     core.error(`Missing issue reference at ${file}:${idx+1} -> ${line}`)
