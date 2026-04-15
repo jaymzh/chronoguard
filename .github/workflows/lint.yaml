@@ -19,3 +19,12 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: MarkdownLint mdl Action
         uses: actionshub/markdownlint@6c82ff529253530dfbf75c37570876c52692835f # 3.1.4
+  linelint:
+    runs-on: ubuntu-latest
+    name: Check if all files end in newline
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Linelint
+        uses: fernandrone/linelint@master
+        id: linelint

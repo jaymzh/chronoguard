@@ -47,6 +47,7 @@ You can pass a variety of options into `with`:
 * `verbse` - If true prints verbose debugging otuput
 * `fail_on_malformed_tags` - If we believe there was a tag, but didn't parse a
   date, fail. Defaults to `true`, but if you set to `false`, will warn instead.
+* `files` - comma-separated list of files (instead of `glob`)
 
 ## Full example
 

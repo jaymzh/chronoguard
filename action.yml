@@ -2,9 +2,9 @@ name: "chronoguard-action"
 description: "Fails or warns when annotated dates expire"
 inputs:
   files:
-    description: "JSON array of files to scan"
+    description: "Comma-separated list of files"
     required: false
-    default: "[]"
+    default: ""
   glob:
     description: "Glob pattern to match files"
     required: false
